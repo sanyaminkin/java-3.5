@@ -1,16 +1,14 @@
 package ru.netology.manager;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.RequiredArgsConstructor;
 import ru.netology.domain.Book;
 import ru.netology.domain.Product;
 import ru.netology.domain.Smartphone;
 import ru.netology.repository.ProductRepository;
 
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+@RequiredArgsConstructor
 public class ProductManager {
     private ProductRepository repository = new ProductRepository();
 
@@ -40,7 +38,7 @@ public class ProductManager {
     public boolean matches(Product product, String search) {
         if (product instanceof Book) {
             Book book = (Book) product;
-            if (((Book) product).getAuthor().contains(search)) {
+            if (book.getAuthor().contains(search)) {
                 return true;
             }
             if (product.getName().contains(search)) {
@@ -50,7 +48,7 @@ public class ProductManager {
         }
         if (product instanceof Smartphone) {
             Smartphone smartphone = (Smartphone) product;
-            if (((Smartphone) product).getManufacturer().contains(search)) {
+            if (smartphone.getManufacturer().contains(search)) {
                 return true;
             }
             if (product.getName().contains(search)) {

@@ -1,5 +1,6 @@
 package ru.netology.manager;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import ru.netology.domain.Book;
 import ru.netology.domain.Product;
@@ -18,8 +19,8 @@ public class ProductManagerNonEmptyTest {
     private Smartphone item7 = new Smartphone(7, 7777, "12 PRO", "iPhone");
     private Product item8 = new Product (8, 8888, "New Product");
 
-    @Test
-    public void shouldFindBookByName() {
+    @BeforeEach
+    public void setUp() {
         manager.save(item1);
         manager.save(item2);
         manager.save(item3);
@@ -28,6 +29,10 @@ public class ProductManagerNonEmptyTest {
         manager.save(item6);
         manager.save(item7);
         manager.save(item8);
+    }
+
+    @Test
+    public void shouldFindBookByName() {
         Product[] actual = manager.searchBy("Дюна");
         Product[] expected = new Product[]{item1};
         assertArrayEquals(expected, actual);
@@ -35,14 +40,6 @@ public class ProductManagerNonEmptyTest {
 
     @Test
     public void shouldFindBookByAuthor() {
-        manager.save(item1);
-        manager.save(item2);
-        manager.save(item3);
-        manager.save(item4);
-        manager.save(item5);
-        manager.save(item6);
-        manager.save(item7);
-        manager.save(item8);
         Product[] actual = manager.searchBy("Урсула Ле Гуин");
         Product[] expected = new Product[]{item4};
         assertArrayEquals(expected, actual);
@@ -50,14 +47,6 @@ public class ProductManagerNonEmptyTest {
 
     @Test
     public void shouldFindSmartphoneByName() {
-        manager.save(item1);
-        manager.save(item2);
-        manager.save(item3);
-        manager.save(item4);
-        manager.save(item5);
-        manager.save(item6);
-        manager.save(item7);
-        manager.save(item8);
         Product[] actual = manager.searchBy("12 PRO");
         Product[] expected = new Product[]{item7};
         assertArrayEquals(expected, actual);
@@ -65,14 +54,6 @@ public class ProductManagerNonEmptyTest {
 
     @Test
     public void shouldFindSmartphoneByManufacturer() {
-        manager.save(item1);
-        manager.save(item2);
-        manager.save(item3);
-        manager.save(item4);
-        manager.save(item5);
-        manager.save(item6);
-        manager.save(item7);
-        manager.save(item8);
         Product[] actual = manager.searchBy("Samsung");
         Product[] expected = new Product[]{item5, item6};
         assertArrayEquals(expected, actual);
@@ -80,14 +61,6 @@ public class ProductManagerNonEmptyTest {
 
     @Test
     public void shouldFindProductByName() {
-        manager.save(item1);
-        manager.save(item2);
-        manager.save(item3);
-        manager.save(item4);
-        manager.save(item5);
-        manager.save(item6);
-        manager.save(item7);
-        manager.save(item8);
         Product[] actual = manager.searchBy("New Product");
         Product[] expected = new Product[]{};
         assertArrayEquals(expected, actual);
