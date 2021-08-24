@@ -14,9 +14,6 @@ import ru.netology.repository.ProductRepository;
 public class ProductManager {
     private ProductRepository repository = new ProductRepository();
 
-    public ProductManager() {
-    }
-
     public void save(Product product) {
 
         repository.save(product);
